@@ -8,14 +8,33 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
   <%= stylesheet_pack_tag 'application' %>
 </head>
 
 <body>
   <div class="container">
-    <p id="alert"><%= alert %></p>
-    <p id="notice"><%= notice %></p>
-    <%= yield %>
+    <h1 class="display-1 p-3 bg-secondary text-white rounded">Best Shop</h1>
+    <div class="row">
+      <div class="col-4" id="cart">
+        <% if @cart && @cart.line_items.any? %>
+        <%= render @cart %>
+        <% else %>
+        <h2>Panier vide</h2>
+        <% end %>
+      </div>
+      <div class="col-8">
+        <p id="alert"><%= alert %></p>
+        <p id="notice"><%= notice %></p>
+        <%= yield %>
+      </div>
+    </div>
   </div>
 </body>
 </html>

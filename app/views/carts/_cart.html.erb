@@ -1,0 +1,16 @@
+<h2>Panier</h2>
+<ul>
+  <% cart.line_items.each do |item| %>
+  <li class="line"><%= item.product.title %> (x <%= item.quantity %>)
+    <span class="badge badge-info"><%= number_to_currency(item.total, unit: "€", separator: ",", format: "%n %u") %>
+    </li>
+    <% end %>
+  </ul>
+  <p class="font-weight-bold">Total : <span class="badge badge-info"><%= number_to_currency(@cart.total, unit: "€", separator: ",", format: "%n %u") %></span></p>
+
+<%=  button_to "Acheter", new_order_path, method: :get, class: "btn btn-primary mb-2" %>
+  <div class="col">
+    <%= button_to "Vider le panier", cart, method: :delete, data: {
+      confirm: "Êtes-vous sûr ?" }, class: "btn btn-danger", remote: true %>
+    </div>
+  </div>
